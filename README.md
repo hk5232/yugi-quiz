@@ -1,24 +1,35 @@
-# README
+## quizzesテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| question           | text    | null: false               |
+| source_id          | integer | null: false               |
+| card_name          | string  | null: false               |
+| attack             | integer |                           |
+| defense            | integer |                           |
 
-Things you may want to cover:
+### Association
+- has_many :choices
+- has_many :challengers
 
-* Ruby version
+## challengersテーブル
 
-* System dependencies
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| name        | string     | null: false                    |
+| score       | integer    | null: false                    |
+| quiz        | references | null: false, foreign_key: true |
 
-* Configuration
+### Association
+- belongs_to :quiz
 
-* Database creation
+## choicesテーブル
 
-* Database initialization
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| answer      | boolean    | default: false, null: false    |
+| quiz        | references | null: false, foreign_key: true |
 
-* How to run the test suite
+### Association
+- belongs_to :quiz
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
