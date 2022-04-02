@@ -17,6 +17,7 @@ class QuizzesController < ApplicationController
   end
 
   def start
+    @quiz = Quiz.all
   end
 
 private
