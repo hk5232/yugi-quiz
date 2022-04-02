@@ -36,27 +36,27 @@
             <%= render 'shared/error_messages', model: f.object %>
 
             <div class="col-12">
-                 <%= f.label :card_name, "カード名" %></label>
+                 <%= f.label :card_name, "カード名" %>
                  <%= f.text_field :card_name, id:"card_name",:class => 'form-control' %>
             </div>
 
             <div class="col-12">
-                <%= f.label :question, "カードテキスト" %></label>
-                <%= f.text_field :question, id:"question",:class => 'form-control', :style => "height:200px" %>
+                <%= f.label :question, "カードテキスト" %>
+                <%= f.text_area :question, id:"question",:class => 'form-control' %>
             </div>
 
             <div class="col-12">
-                <%= f.label :attack, "攻撃力" %></label>
+                <%= f.label :attack, "攻撃力" %>
                 <%= f.text_field :attack, id:"attack",:class => 'form-control'  %>
             </div>
 
             <div class="col-12">
-                <%= f.label :defense, "守備力" %></label>
+                <%= f.label :defense, "守備力" %>
                 <%= f.text_field :defense, id:"defense",:class => 'form-control' %>
             </div>
 
             <div class="col-12">
-                <%= f.label :source_id, "モンスター・魔法・罠" %></label>
+                <%= f.label :source_id, "モンスター・魔法・罠" %>
                 <%= f.collection_select(:source_id, Source.all, :id, :name, {}, {class:"form-control", id:"source_id"}) %>
             </div>
 
