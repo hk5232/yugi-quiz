@@ -16,10 +16,13 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def start
+  end
+
 private
   
 def quiz_params
-  params.require(:quiz).permit(:image, :card_name, :attack, :defense, :source_id)
+  params.require(:quiz).permit(:image, :card_name, :question, :attack, :defense, :source_id)
 end
 
   def basic_auth
