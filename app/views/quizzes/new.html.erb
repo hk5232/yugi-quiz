@@ -1,0 +1,84 @@
+
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <!-- Bootstrap core CSS -->
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+ 
+  </head>
+  <body class="d-flex h-100 text-center text-white bg-dark">
+    
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <%= render "shared/header"%>
+
+  <main class="px-3">
+  <div class="py-5 text-center">
+      <%= image_tag 'yugi.jpg', :alt => '裏面画像', :width => '150', :height => '200' %>
+      <h2>カード登録</h2>
+    </div>
+
+        <%= form_with model: @quiz, local: true do |f|%>
+            <%= render 'shared/error_messages', model: f.object %>
+
+            <div class="col-12">
+                 <%= f.label :card_name, "カード名" %></label>
+                 <%= f.text_field :card_name, id:"card_name",:class => 'form-control' %>
+            </div>
+
+            <div class="col-12">
+                <%= f.label :question, "カードテキスト" %></label>
+                <%= f.text_field :question, id:"question",:class => 'form-control', :style => "height:200px" %>
+            </div>
+
+            <div class="col-12">
+                <%= f.label :attack, "攻撃力" %></label>
+                <%= f.text_field :attack, id:"attack",:class => 'form-control'  %>
+            </div>
+
+            <div class="col-12">
+                <%= f.label :defense, "守備力" %></label>
+                <%= f.text_field :defense, id:"defense",:class => 'form-control' %>
+            </div>
+
+            <div class="col-12">
+                <%= f.label :source_id, "モンスター・魔法・罠" %></label>
+                <%= f.collection_select(:source_id, Source.all, :id, :name, {}, {class:"form-control", id:"source_id"}) %>
+            </div>
+
+            <div class="col-12">
+                 <%= f.label :card_image, "カードの画像" %><br />
+                 <%= f.file_field :image, id:"card_image" %>
+            </div>
+           
+          <hr class="my-4">
+          <%= f.submit "カード登録", :class => 'w-100 btn btn-primary btn-lg'  %>
+        <% end %>
+        <%= render "shared/footer"%>  
+      </div>
+      
+    </div>
+
+  </main>
+
+
+</div>
+
+
+
+  </body>
+</html>
