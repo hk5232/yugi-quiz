@@ -18,15 +18,17 @@ class QuizzesController < ApplicationController
   end
 
   def start
-    @test = params.permit!.to_hash
+    #@test = params.permit!.to_hash
     if params[:number] == "1" || params[:number] == "2" || params[:number] == "3"
-      @id = Quiz.where(source_id: @test["number"])
+      @id = Quiz.where(source_id: params["number"])
     else
       @id = Quiz.all
     end
-    @random = @id.order("RAND()").limit(1)
-    @ans = Quiz.where(source_id: @test["number"])
-    @answer = @ans.order("RAND()").limit(3)
+    @random1 = @id.order("RAND()").limit(1)
+    @random = @id.order("RAND()").first
+    @ans = Quiz.where(source_id: params["number"]).where.not(id: @random.id) 
+    @answer = @ans.order("RAND()").limit(3).to_a
+    @answer.push(@random)
   end
 
 private

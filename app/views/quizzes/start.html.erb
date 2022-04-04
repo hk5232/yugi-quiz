@@ -27,7 +27,7 @@
 
   <main class="px-3">
   <div class="py-5 text-center">       
-   <% @random.each do |id| %>
+   <% @random1.each do |id| %>
        <%= id.question %>
        <%= image_tag id.image %>
       <% end %>
@@ -36,12 +36,13 @@
   <div class="py-5 text-center">       
     <%= form_tag({:controller => "quizzes",
 				  :action => "start"}, { :method => :get} ) do |form| %>
-    <% @answer.each do |question| %>
-    <li>
-	  	<%= radio_button_tag(:question, question.id) %>
-		  <%= label_tag("choice".concat(question.id.to_s).to_sym, question.card_name) %>
-    </li>
+      <% @answer.each do |question| %>
+        <li>
+	  	    <%= radio_button_tag(:question, question.id) %>
+		      <%= label_tag("choice".concat(question.id.to_s).to_sym, question.card_name) %>
+        </li>
       <% end %>
+      <%= submit_tag "回答する", :class => 'btn btn-lg btn-secondary fw-bold border-white bg-blue'  %>
     <% end %>
   </div>
         <%= render "shared/footer"%>  
