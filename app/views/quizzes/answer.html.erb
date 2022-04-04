@@ -35,11 +35,11 @@
 
   <div class="py-5 text-center">       
     <%= form_tag({:controller => "quizzes",
-				  :action => "start"}, { :method => :get} ) do |form| %>
+				  :action => "question"}, { :method => :get} ) do |form| %>
       <% @answer.each do |question| %>
         <li>
-	  	    <%= radio_button_tag(:question, question.id) %>
-		      <%= label_tag("choice".concat(question.id.to_s).to_sym, question.card_name) %>
+	  	    <%= radio_button_tag(:choice, question.id) %>
+		      <%= label_tag(:choice, question.card_name, value: :male) %>
         </li>
       <% end %>
       <%= submit_tag "回答する", :class => 'btn btn-lg btn-secondary fw-bold border-white bg-blue'  %>

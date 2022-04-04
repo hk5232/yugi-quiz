@@ -18,7 +18,37 @@ class QuizzesController < ApplicationController
   end
 
   def start
-    if params[:number] == "1" || params[:number] == "2" || params[:number] == "3"
+    total = params[:total].to_i
+    session[:total]   = total
+    session[:current] = 0
+    session[:correct] = 0
+    
+    redirect_to :action => "answer"
+
+  end
+
+  def question
+    @random1 = session[:question]
+    @current = session[:current]
+    @total   = session[:total]
+    binding.pry
+    if params[:choice] == @random1[0]["id"].to_s
+      session[:correct] += 1
+    end
+     session[:current] += 1
+     redirect_to :action => "answer"
+
+     session[:current] = @current
+     session[:total] = @total 
+  end
+
+
+  def answer
+    @current = session[:current]
+    @total = session[:total]
+    @number = params[:number]
+    
+    if params[:number] == "1" || params[:number] == "2" || params[:number] == "3" 
       @id = Quiz.where(source_id: params["number"])
     else
       @id = Quiz.all
@@ -28,11 +58,32 @@ class QuizzesController < ApplicationController
     @ans = Quiz.where(source_id: params["number"]).where.not(id: @random.id) 
     @answer = @ans.order("RAND()").limit(3).to_a
     @answer.push(@random)
+
+    if @current >= @total
+      redirect_to :action => "end"
+      return
+    end
+
+    session[:question] = @random1
+    session[:current] = @current
+    session[:total] = @total 
+
+    
+
+
+
+
+#   redirect_to answer_quizzes_path, notice: '回答は締め切りました' if @random.limit < Time.current
+#     if self.parent.created_at+(self.parent.limit*2) < Time.now
   end
 
-  def answer
+  def end
+    @correct = session[:correct]
+    @total   = session[:total]
+    @current = session[:current]
     
-  end
+ #   @score = @correct * 100 / @total
+   end
 
 
 private

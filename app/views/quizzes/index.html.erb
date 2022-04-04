@@ -33,6 +33,7 @@
     <%= form_tag({:controller => "quizzes",
 				  :action => "start"}, { :method => :get} ) do %>
       <%= select_tag(:number, options_for_select({ "モンスター" => "2", "魔法" => "3", "罠" => "4", "全て" => "5" }), :id => "count") %>
+      <%= select_tag(:total, options_for_select({ "5問" => "5", "10問" => "10", "15問" => "15", "20問" => "20" }), :id => "count") %>
       <%= submit_tag "デュエル！！", :class => 'btn btn-lg btn-secondary fw-bold border-white bg-blue'  %>
       <%= link_to "デュエル！！", '/quizzes/start', class: :'btn btn-lg btn-secondary fw-bold border-white bg-blue'  %>
     <% end %>
