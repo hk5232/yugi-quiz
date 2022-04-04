@@ -18,7 +18,6 @@ class QuizzesController < ApplicationController
   end
 
   def start
-    #@test = params.permit!.to_hash
     if params[:number] == "1" || params[:number] == "2" || params[:number] == "3"
       @id = Quiz.where(source_id: params["number"])
     else
@@ -30,6 +29,11 @@ class QuizzesController < ApplicationController
     @answer = @ans.order("RAND()").limit(3).to_a
     @answer.push(@random)
   end
+
+  def answer
+    
+  end
+
 
 private
   
