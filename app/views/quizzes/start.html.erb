@@ -26,12 +26,24 @@
   <%= render "shared/header"%>
 
   <main class="px-3">
-  <div class="py-5 text-center">
-      <%= image_tag 'yugi.jpg', :alt => '裏面画像', :width => '150', :height => '200' %>
-      <h2>カード登録</h2>
-    </div>
+  <div class="py-5 text-center">       
+   <% @random.each do |id| %>
+       <%= id.question %>
+       <%= image_tag id.image %>
+      <% end %>
+  </div>
 
-        
+  <div class="py-5 text-center">       
+    <%= form_tag({:controller => "quizzes",
+				  :action => "start"}, { :method => :get} ) do |form| %>
+    <% @answer.each do |question| %>
+    <li>
+	  	<%= radio_button_tag(:question, question.id) %>
+		  <%= label_tag("choice".concat(question.id.to_s).to_sym, question.card_name) %>
+    </li>
+      <% end %>
+    <% end %>
+  </div>
         <%= render "shared/footer"%>  
       </div>
       

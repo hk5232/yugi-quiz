@@ -30,7 +30,13 @@
     <h1>遊戯王カードクイズ（第２期シリーズ）</h1>
     <p class="lead">遊戯王第２期シリーズのカードクイズです。<br>問題文からカード名を選んで選択してください。</p>
     <p class="lead">
+    <%= form_tag({:controller => "quizzes",
+				  :action => "start"}, { :method => :get} ) do %>
+      <%= select_tag(:number, options_for_select({ "モンスター" => "2", "魔法" => "3", "罠" => "4", "全て" => "5" }), :id => "count") %>
+      <%#= select_tag(:number, options_for_select((1..10),{|x| [, x]}), :id => "count") %>
+      <%= submit_tag "デュエル！！", :class => 'btn btn-lg btn-secondary fw-bold border-white bg-blue'  %>
       <%= link_to "デュエル！！", '/quizzes/start', class: :'btn btn-lg btn-secondary fw-bold border-white bg-blue'  %>
+    <% end %>
     </p>
   </main>
 
