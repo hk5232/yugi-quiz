@@ -75,3 +75,37 @@ li {
 #image2{
   display: none;
 }
+
+@media (max-width: 1024px) {
+  .inner {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .page-heading {
+    font-size: 24px;
+  }
+  .card {
+    width: 48%;
+    margin-bottom: 40px;
+  }
+  .card__title {
+    font-size: 20px;
+  }
+  .card__summary {
+    font-size: 16px;
+  }
+}
+
+ /* スマホ表示時 */
+ @media (max-width: 599px) {
+  .image{
+    display: block;
+  }
+  .answer{
+    margin: auto;
+    margin-top: 30px;
+  }
+  .add_style{
+    width: 80%;
+  }
+ }
