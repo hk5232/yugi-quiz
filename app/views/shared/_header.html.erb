@@ -1,12 +1,12 @@
 <header class="mb-auto">
     <div>
       <h3>
-      <%= link_to "遊戯王カードクイズ", '/', class: :'float-md-start mb-0', :style => "text-decoration: none;" %>
+      <%= link_to "遊戯王カードクイズ", '/', class: :'float-md-start mb-0', id: :header1 %>
       </h3>
       <nav class="nav nav-masthead justify-content-center float-md-end">
-        <a class="nav-link active" aria-current="page" href="/">Top</a>
-        <a class="nav-link" href="#">about</a>
-        <a><%= link_to "管理者", '/quizzes/new', class: :'nav-link' %> </a>
+        <a id="header1", class="nav-link active" aria-current="page" href="/">トップページ</a>
+        <a id="header1", class="nav-link active" href="https://twitter.com/hk52329119">作者Twitter</a>
+        <a><%= link_to "管理者", '/quizzes/new', class: :'nav-link', id: :header1 %> </a>
       </nav>
     </div>
   </header>
