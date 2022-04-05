@@ -26,17 +26,10 @@
   <%= render "shared/header"%>
 
   <main class="px-3">
-    <h1><%= "#{@correct}/#{@total}問正解！" %></h1>
-    <p class="lead">再プレイ<br>問題文からカード名を選んで選択してください。</p>
-    <p class="lead">
-    <%= form_tag({:controller => "quizzes",
-				  :action => "start"}, { :method => :get} ) do %>
-      <%= select_tag(:number, options_for_select({ "モンスター" => "2", "魔法" => "3", "罠" => "4", "全て" => "5" }), :id => "count") %>
-      <%= select_tag(:total, options_for_select({ "5問" => "5", "10問" => "10", "15問" => "15", "20問" => "20" }), :id => "count") %>
-      <%= submit_tag "デュエル！！", :class => 'btn btn-lg btn-secondary fw-bold border-white bg-blue'  %>
-      <%= link_to "デュエル！！", '/quizzes/start', class: :'btn btn-lg btn-secondary fw-bold border-white bg-blue'  %>
-    <% end %>
-    </p>
+    <h1><%= "#{@correct}/#{@total}問正解！<br>結果をつぶやく".html_safe %></h1>
+    
+    <%= link_to image_tag('twitter.jpg', :class => "add_style"), "https://twitter.com/share?url=https://yugi-quiz.herokuapp.com/&text=遊戯王第二期カードクイズ！#{@correct}/#{@total}問正解&hashtags=遊戯王カードクイズ", title: 'Twitter', target: '_blank', class: 'add_style' %>
+
   </main>
 
 <%= render "shared/footer"%>  

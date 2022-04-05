@@ -7,6 +7,62 @@ li{
   list-style: none;
 }
 
-#count {
-  
+select, option{
+  border:skyblue 5px inset;
+}
+
+.question{
+  font-size: 25px;
+}
+
+.question {
+  margin: 2em auto;
+  padding: 1em;
+  width: 90%; 
+  background-color: #bfcbeb; 
+  color: #666; 
+  box-shadow: 0 0 5px 1px #c0c0c0;
+  border-radius: 10px;
+ }
+
+li {
+  color: #404040;
+  border-left: solid 6px #1fa67a;/*左側の線*/
+  border-bottom: solid 2px #dadada;/*下に灰色線*/
+  background: whitesmoke;
+  margin-bottom: 5px;/*下のバーとの余白*/
+  line-height: 1.5;
+  padding: 0.5em;
+  list-style-type: none!important;/*ポチ消す*/
+  font-weight: bold;
+}
+
+.answer{
+
+
+    height: 150px;
+    width: 60%;
+    margin: 80px 0px 50px 0px;
+
+}
+
+.image{
+
+
+  display: flex;
+  justify-content:space-around;
+
+}
+
+#button{
+  margin-top: 30px;
+}
+
+.float-md-start mb-0{
+  text-decoration: none;
+}
+
+.add_style{
+  width: 500px;
+  height: 250px;
 }

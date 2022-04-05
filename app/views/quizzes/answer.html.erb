@@ -26,17 +26,22 @@
   <%= render "shared/header"%>
 
   <main class="px-3">
-  <div class="py-5 text-center">       
+  <div class="py-5 text-center">
+  <h3><p class="title"><%= "Question#{@current + 1}" %></p></h3>
    <% @random1.each do |id| %>
+   <div class='question'>
        <%= id.question %>
-       <%= image_tag id.image %>
-      <% end %>
-  </div>
+   </div>
 
-  <div class="py-5 text-center">       
-    <%= form_tag({:controller => "quizzes",
+   <div class='image'>
+    <div class='size'>
+       <%= image_tag id.image, size: '350x500' %>
+    </div>
+
+        <div class="answer">
+        <%= form_tag({:controller => "quizzes",
 				  :action => "question"}, { :method => :get} ) do |form| %>
-      
+
       <% @answer.each do |question| %>
         <li>
           <label>
@@ -46,9 +51,20 @@
 	
         </li>
       <% end %>
-      <%= submit_tag "回答する", :class => 'btn btn-lg btn-secondary fw-bold border-white bg-blue'  %>
+      <%= submit_tag "回答する", :class => 'btn btn-lg btn-secondary fw-bold border-white bg-blue' , :id => 'button' %>
+      </div>
     <% end %>
+
+       </div>
+ 
+      <% end %>
   </div>
+
+  <div class="py-5 text-center">   
+  
+
+  </div>
+  
         <%= render "shared/footer"%>  
       </div>
       
