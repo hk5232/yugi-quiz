@@ -69,7 +69,6 @@ class QuizzesController < ApplicationController
       redirect_to :action => "end"
       return
     end
-
     session[:question] = @random1
     session[:current] = @current
     session[:total] = @total 
