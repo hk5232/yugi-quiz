@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   resources :quizzes do
     collection do
       get 'start'
+      get 'question'
+      get 'answer'
+      get 'end'
+      get 'end'
     end
   end
 end

@@ -26,20 +26,13 @@
   <%= render "shared/header"%>
 
   <main class="px-3">
-  <div class="py-5 text-center">
-      <%= image_tag 'yugi.jpg', :alt => '裏面画像', :width => '150', :height => '200' %>
-      <h2>カード登録</h2>
-    </div>
-
-        
-        <%= render "shared/footer"%>  
-      </div>
-      
-    </div>
+    <h1><%= "#{@correct}/#{@total}問正解！<br>結果をつぶやく".html_safe %></h1>
+    
+    <%= link_to image_tag('twitter.jpg', :class => "add_style"), "https://twitter.com/share?url=https://yugi-quiz.herokuapp.com/&text=遊戯王第二期カードクイズ！#{@correct}/#{@total}問正解&hashtags=遊戯王カードクイズ", title: 'Twitter', target: '_blank', class: 'add_style' %>
 
   </main>
 
-
+<%= render "shared/footer"%>  
 </div>
 
 
