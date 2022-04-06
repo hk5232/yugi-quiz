@@ -60,7 +60,7 @@ class QuizzesController < ApplicationController
     @total = session[:total]
     @number = session[:number]
     @correct = session[:correct]
-    if @number == 1 || @number == 2 || @number == 3 
+    if @number == 2 || @number == 3 || @number == 4 
       @id = Quiz.where(source_id: @number)
     else
       @id = Quiz.all
