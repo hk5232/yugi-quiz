@@ -6,7 +6,9 @@ Rails.application.routes.draw do
       get 'question'
       get 'answer'
       get 'end'
-      get 'end'
+      get 'question2'
+      get 'answer2'
+      
     end
   end
 end

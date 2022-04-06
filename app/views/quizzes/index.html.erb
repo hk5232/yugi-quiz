@@ -35,6 +35,7 @@
 				  :action => "start"}, { :method => :get} ) do %>
       <%= select_tag(:number, options_for_select({ "モンスター" => "2", "魔法" => "3", "罠" => "4", "全て" => "5" }), :id => "count") %>
       <%= select_tag(:total, options_for_select({ "5問" => "5", "10問" => "10", "15問" => "15", "20問" => "20","30問" => "30", "50問" => "50", "100問" => "100" }), :id => "count") %>
+      <%= select_tag(:quiz_choice, options_for_select({ "説明文クイズ" => "1", "画像クイズ" => "2" }), :id => "count") %>
       <%= submit_tag "デュエル！！", :class => 'btn btn-lg btn-secondary fw-bold border-white bg-blue'   %>
     <% end %>
     </p>
