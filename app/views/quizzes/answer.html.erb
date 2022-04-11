@@ -45,7 +45,7 @@
         <%= form_tag({:controller => "quizzes",
 				  :action => "question"}, { :method => :get} ) do |form| %>
 
-      <% @answer.each do |question| %>
+      <% @answer.shuffle.each do |question| %>
         <li>
           <label>
 	  	     <%= radio_button_tag(:choice, question.id) %> 
