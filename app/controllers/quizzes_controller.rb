@@ -13,7 +13,7 @@ class QuizzesController < ApplicationController
     if @quiz.save
       redirect_to root_path
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -26,11 +26,11 @@ class QuizzesController < ApplicationController
     session[:current] = 0
     session[:correct] = 0
     session[:time] = time
-     if params[:quiz_choice].to_i == 1 
-    redirect_to :action => "answer"
-     elsif params[:quiz_choice].to_i == 2
-      redirect_to :action => "answer2"
-     end
+    if params[:quiz_choice].to_i == 1
+      redirect_to action: 'answer'
+    elsif params[:quiz_choice].to_i == 2
+      redirect_to action: 'answer2'
+    end
   end
 
   def question
@@ -41,19 +41,16 @@ class QuizzesController < ApplicationController
     @correct = session[:correct]
     @number = session[:number]
 
-    if params[:choice] == @random1[0]["id"].to_s 
-      @correct += 1
-    end
-     @current += 1
-     redirect_to :action => "answer"
+    @correct += 1 if params[:choice] == @random1[0]['id'].to_s
+    @current += 1
+    redirect_to action: 'answer'
 
-     session[:current] = @current
-     session[:total] = @total 
-     session[:correct] = @correct
-     session[:number] = @number
-     session[:time] = @time
+    session[:current] = @current
+    session[:total] = @total
+    session[:correct] = @correct
+    session[:number] = @number
+    session[:time] = @time
   end
-
 
   def answer
     @limit_time = Time.now
@@ -63,37 +60,36 @@ class QuizzesController < ApplicationController
     @total = session[:total]
     @number = session[:number]
     @correct = session[:correct]
-    if @number == 2 || @number == 3 || @number == 4 
-      @quiz = Quiz.where(source_id: @number)
-    else
-      @quiz = Quiz.all
-    end
-    @random1 = @quiz.order("RAND()").limit(1)
-    @random = @quiz.order("RAND()").first
-    @ans = Quiz.where(source_id: @number).where.not(id: @random.id) 
-    @answer = @ans.order("RAND()").limit(3).to_a
+    @quiz = if @number == 2 || @number == 3 || @number == 4
+              Quiz.where(source_id: @number)
+            else
+              Quiz.all
+            end
+    @random1 = @quiz.order('RAND()').limit(1)
+    @random = @quiz.order('RAND()').first
+    @ans = Quiz.where(source_id: @number).where.not(id: @random.id)
+    @answer = @ans.order('RAND()').limit(3).to_a
     @answer.push(@random)
 
     if @current >= @total || @limit > 30
-      redirect_to :action => "end"
+      redirect_to action: 'end'
       return
     end
     session[:question] = @random1
     session[:current] = @current
-    session[:total] = @total 
+    session[:total] = @total
     session[:correct] = @correct
     session[:number] = @number
     session[:time] = @time
-
   end
 
   def end
     @correct = session[:correct]
     @total   = session[:total]
     @current = session[:current]
-   end
+  end
 
-   def question2
+  def question2
     @time = session[:time]
     @random1 = session[:question]
     @current = session[:current]
@@ -101,19 +97,16 @@ class QuizzesController < ApplicationController
     @correct = session[:correct]
     @number = session[:number]
 
-    if params[:choice] == @random1[0]["id"].to_s 
-      @correct += 1
-    end
-     @current += 1
-     redirect_to :action => "answer2"
+    @correct += 1 if params[:choice] == @random1[0]['id'].to_s
+    @current += 1
+    redirect_to action: 'answer2'
 
-     session[:current] = @current
-     session[:total] = @total 
-     session[:correct] = @correct
-     session[:number] = @number
-     session[:time] = @time
+    session[:current] = @current
+    session[:total] = @total
+    session[:correct] = @correct
+    session[:number] = @number
+    session[:time] = @time
   end
-
 
   def answer2
     @limit_time = Time.now
@@ -123,36 +116,34 @@ class QuizzesController < ApplicationController
     @total = session[:total]
     @number = session[:number]
     @correct = session[:correct]
-    if @number == 2 || @number == 3 || @number == 4 
-      @quiz = Quiz.where(source_id: @number)
-    else
-      @quiz = Quiz.all
-    end
-    @random1 = @quiz.order("RAND()").limit(1)
-    @random = @quiz.order("RAND()").first
-    @ans = Quiz.where(source_id: @number).where.not(id: @random.id) 
-    @answer = @ans.order("RAND()").limit(3).to_a
+    @quiz = if @number == 2 || @number == 3 || @number == 4
+              Quiz.where(source_id: @number)
+            else
+              Quiz.all
+            end
+    @random1 = @quiz.order('RAND()').limit(1)
+    @random = @quiz.order('RAND()').first
+    @ans = Quiz.where(source_id: @number).where.not(id: @random.id)
+    @answer = @ans.order('RAND()').limit(3).to_a
     @answer.push(@random)
 
     if @current >= @total || @limit > 30
-      redirect_to :action => "end"
+      redirect_to action: 'end'
       return
     end
     session[:question] = @random1
     session[:current] = @current
-    session[:total] = @total 
+    session[:total] = @total
     session[:correct] = @correct
     session[:number] = @number
     session[:time] = @time
-
   end
 
+  private
 
-private
-  
-def quiz_params
-  params.require(:quiz).permit(:image, :card_name, :question, :attack, :defense, :source_id)
-end
+  def quiz_params
+    params.require(:quiz).permit(:image, :card_name, :question, :attack, :defense, :source_id)
+  end
 
   def basic_auth
     authenticate_or_request_with_http_basic do |username, password|
@@ -160,4 +151,3 @@ end
     end
   end
 end
-
