@@ -5,13 +5,12 @@ class Quiz < ApplicationRecord
 
   validates :question, presence: { message: 'は必須項目です' }
   validates :card_name, presence: { message: 'は必須項目です' }
-  validates :source_id, numericality: { other_than: 1 } 
+  validates :source_id, numericality: { other_than: 1 }
   validates :image, presence: { message: 'は必須項目です' }
- 
-#  after_find :limit_to_time
 
-  private
-#    def limit_to_time
-#      self.number = Time.current.since(2.minute)
-#    end  
+  #  after_find :limit_to_time
+
+  #    def limit_to_time
+  #      self.number = Time.current.since(2.minute)
+  #    end
 end
